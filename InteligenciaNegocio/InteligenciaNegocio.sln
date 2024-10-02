@@ -3,20 +3,20 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.32802.440
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{C9674DCB-5085-4A16-B785-4C70DD1589BD}") = "AlbarranSolucion", "AlbarranSolucion\AlbarranSolucion\AlbarranSolucion.dtproj", "{0B68E223-2C0D-4EFF-BC5E-FF3D431068D7}"
+Project("{C9674DCB-5085-4A16-B785-4C70DD1589BD}") = "InteligenciaNegocio", "InteligenciaNegocio\InteligenciaNegocio.dtproj", "{9D4E1D24-A516-4ADF-BEF5-DFC811C99CBE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Development|Default = Development|Default
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{0B68E223-2C0D-4EFF-BC5E-FF3D431068D7}.Development|Default.ActiveCfg = Development
-		{0B68E223-2C0D-4EFF-BC5E-FF3D431068D7}.Development|Default.Build.0 = Development
+		{9D4E1D24-A516-4ADF-BEF5-DFC811C99CBE}.Development|Default.ActiveCfg = Development
+		{9D4E1D24-A516-4ADF-BEF5-DFC811C99CBE}.Development|Default.Build.0 = Development
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {D59B7BB5-42EE-4750-8BDE-7FB37E5C7CA8}
+		SolutionGuid = {0E376A20-7ED1-4C8E-91C2-36B67D27468E}
 	EndGlobalSection
 EndGlobal
