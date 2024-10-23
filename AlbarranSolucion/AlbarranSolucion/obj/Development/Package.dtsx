@@ -1,4 +1,4 @@
-﻿<?xml version="1.0"?>
+<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
   DTS:CreationDate="9/30/2024 7:51:31 PM"
@@ -11,8 +11,8 @@
   DTS:LocaleID="13322"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="3"
-  DTS:VersionGUID="{791F2EA3-9A6E-44B1-A110-ACCAE90CF0FB}">
+  DTS:VersionBuild="2"
+  DTS:VersionGUID="{5D380D84-34A1-4A06-821C-19E7CBC65F55}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -1754,7 +1754,7 @@ FROM     DIM_SUCURSAL</property>
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      length="250"
+                      length="80"
                       lineageId="Package\Dim_Vendedor\Data Conversion.Outputs[Data Conversion Output].Columns[appaterno_alba]"
                       name="appaterno_alba"
                       truncationRowDisposition="FailComponent">
@@ -1776,7 +1776,7 @@ FROM     DIM_SUCURSAL</property>
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      length="250"
+                      length="80"
                       lineageId="Package\Dim_Vendedor\Data Conversion.Outputs[Data Conversion Output].Columns[apmaterno_alba]"
                       name="apmaterno_alba"
                       truncationRowDisposition="FailComponent">
@@ -2081,14 +2081,14 @@ FROM     DIM_SUCURSAL</property>
                       refId="Package\Dim_Vendedor\Merge Join.Inputs[Merge Join Left Input].Columns[appaterno_alba]"
                       cachedCodepage="1252"
                       cachedDataType="str"
-                      cachedLength="250"
+                      cachedLength="80"
                       cachedName="appaterno_alba"
                       lineageId="Package\Dim_Vendedor\Sort.Outputs[Sort Output].Columns[appaterno_alba]" />
                     <inputColumn
                       refId="Package\Dim_Vendedor\Merge Join.Inputs[Merge Join Left Input].Columns[apmaterno_alba]"
                       cachedCodepage="1252"
                       cachedDataType="str"
-                      cachedLength="250"
+                      cachedLength="80"
                       cachedName="apmaterno_alba"
                       lineageId="Package\Dim_Vendedor\Sort.Outputs[Sort Output].Columns[apmaterno_alba]" />
                     <inputColumn
@@ -2932,7 +2932,7 @@ FROM     DIM_VENDEDOR</property>
                       refId="Package\Dim_Vendedor\Sort.Inputs[Sort Input].Columns[appaterno_alba]"
                       cachedCodepage="1252"
                       cachedDataType="str"
-                      cachedLength="250"
+                      cachedLength="80"
                       cachedName="appaterno_alba"
                       lineageId="Package\Dim_Vendedor\Data Conversion.Outputs[Data Conversion Output].Columns[appaterno_alba]">
                       <properties>
@@ -2950,7 +2950,7 @@ FROM     DIM_VENDEDOR</property>
                       refId="Package\Dim_Vendedor\Sort.Inputs[Sort Input].Columns[apmaterno_alba]"
                       cachedCodepage="1252"
                       cachedDataType="str"
-                      cachedLength="250"
+                      cachedLength="80"
                       cachedName="apmaterno_alba"
                       lineageId="Package\Dim_Vendedor\Data Conversion.Outputs[Data Conversion Output].Columns[apmaterno_alba]">
                       <properties>
@@ -3025,7 +3025,7 @@ FROM     DIM_VENDEDOR</property>
                       refId="Package\Dim_Vendedor\Sort.Outputs[Sort Output].Columns[appaterno_alba]"
                       codePage="1252"
                       dataType="str"
-                      length="250"
+                      length="80"
                       lineageId="Package\Dim_Vendedor\Sort.Outputs[Sort Output].Columns[appaterno_alba]"
                       name="appaterno_alba">
                       <properties>
@@ -3040,7 +3040,7 @@ FROM     DIM_VENDEDOR</property>
                       refId="Package\Dim_Vendedor\Sort.Outputs[Sort Output].Columns[apmaterno_alba]"
                       codePage="1252"
                       dataType="str"
-                      length="250"
+                      length="80"
                       lineageId="Package\Dim_Vendedor\Sort.Outputs[Sort Output].Columns[apmaterno_alba]"
                       name="apmaterno_alba">
                       <properties>
