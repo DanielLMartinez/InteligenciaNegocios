@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
   DTS:CreationDate="9/27/2024 9:14:04 PM"
@@ -11,11 +11,33 @@
   DTS:LocaleID="13322"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="1"
-  DTS:VersionGUID="{23D5EEC9-8FDB-4BA3-A109-F5EF6429B73E}">
+  DTS:VersionBuild="2"
+  DTS:VersionGUID="{126DA449-EC59-4622-8765-28BFF6609868}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[localhost.Albarran]"
+      DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{0281848C-5B23-468E-AE47-9820750F1002}"
+      DTS:ObjectName="localhost.Albarran">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=localhost;Initial Catalog=Albarran;Integrated Security=True;Application Name=SSIS-Package-{0281848C-5B23-468E-AE47-9820750F1002}localhost.Albarran;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[localhost.Albarran1]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{A4464310-E9D3-4207-B767-2137EAD54B72}"
+      DTS:ObjectName="localhost.Albarran1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=localhost;Initial Catalog=Albarran;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[localhost.VentasSucursal]"
       DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
@@ -26,8 +48,23 @@
           DTS:ConnectionString="Data Source=localhost;Initial Catalog=VentasSucursal;Integrated Security=True;Application Name=SSIS-Package-{6C9E3B6B-372E-4687-AB3C-0A2520B8A5FD}localhost.VentasSucursal;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[localhost.VentasSucursal1]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{D1BB10F0-8470-42C1-95AB-A233040ADEF9}"
+      DTS:ObjectName="localhost.VentasSucursal1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=localhost;Initial Catalog=VentasSucursal;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
   <DTS:Variables />
+  <DTS:LoggingOptions
+    DTS:FilterKind="0"
+    DTS:LoggingMode="2" />
   <DTS:Executables>
     <DTS:Executable
       DTS:refId="Package\Carga FactVentas"
@@ -39,91 +76,449 @@
       DTS:ObjectName="Carga FactVentas"
       DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
       <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
       <DTS:ObjectData>
         <pipeline
           version="1" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
-      DTS:refId="Package\Tarea Flujo de datos"
+      DTS:refId="Package\DIM_SUCURSAL"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Tarea Flujo de datos"
-      DTS:DTSID="{8822E4EA-C41F-4CE7-8E12-90130FB5D0F0}"
+      DTS:DTSID="{AA9510D2-BAD7-4DF4-A9BB-1656A053A316}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
-      DTS:ObjectName="Tarea Flujo de datos"
+      DTS:ObjectName="DIM_SUCURSAL"
       DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
       <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
       <DTS:ObjectData>
         <pipeline
           version="1">
           <components>
             <component
-              refId="Package\Tarea Flujo de datos\Origen de ADO NET"
-              componentClassID="Microsoft.ManagedComponentHost"
-              contactInfo="Consume datos de SQL Server, OLE DB, ODBC u Oracle mediante el correspondiente proveedor de datos de .NET Framework. Se usa una instrucción Transact-SQL para definir el conjunto de resultados. Por ejemplo, se extraen datos de SQL Server con el proveedor de datos de .NET Framework para SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;4"
-              description="Consume datos de SQL Server, OLE DB, ODBC u Oracle mediante el correspondiente proveedor de datos de .NET Framework. Se usa una instrucción Transact-SQL para definir el conjunto de resultados. Por ejemplo, se extraen datos de SQL Server con el proveedor de datos de .NET Framework para SQL Server."
-              name="Origen de ADO NET"
+              refId="Package\DIM_SUCURSAL\Data Conversion"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Data Conversion"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DIM_SUCURSAL\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DIM_SUCURSAL\Data Conversion.Inputs[Data Conversion Input].Columns[sucursal_id]"
+                      cachedDataType="i4"
+                      cachedName="sucursal_id"
+                      lineageId="Package\DIM_SUCURSAL\OLE DB Source.Outputs[OLE DB Source Output].Columns[sucursal_id]" />
+                    <inputColumn
+                      refId="Package\DIM_SUCURSAL\Data Conversion.Inputs[Data Conversion Input].Columns[sucursal]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="sucursal"
+                      lineageId="Package\DIM_SUCURSAL\OLE DB Source.Outputs[OLE DB Source Output].Columns[sucursal]" />
+                    <inputColumn
+                      refId="Package\DIM_SUCURSAL\Data Conversion.Inputs[Data Conversion Input].Columns[comuna]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="comuna"
+                      lineageId="Package\DIM_SUCURSAL\OLE DB Source.Outputs[OLE DB Source Output].Columns[comuna]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DIM_SUCURSAL\Data Conversion.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\DIM_SUCURSAL\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DIM_SUCURSAL\Data Conversion.Outputs[Data Conversion Output].Columns[sucursal_id_str]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\DIM_SUCURSAL\Data Conversion.Outputs[Data Conversion Output].Columns[sucursal_id_str]"
+                      name="sucursal_id_str"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\DIM_SUCURSAL\OLE DB Source.Outputs[OLE DB Source Output].Columns[sucursal_id]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DIM_SUCURSAL\Data Conversion.Outputs[Data Conversion Output].Columns[sucursal_str]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="80"
+                      lineageId="Package\DIM_SUCURSAL\Data Conversion.Outputs[Data Conversion Output].Columns[sucursal_str]"
+                      name="sucursal_str"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\DIM_SUCURSAL\OLE DB Source.Outputs[OLE DB Source Output].Columns[sucursal]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DIM_SUCURSAL\Data Conversion.Outputs[Data Conversion Output].Columns[comuna_str]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="80"
+                      lineageId="Package\DIM_SUCURSAL\Data Conversion.Outputs[Data Conversion Output].Columns[comuna_str]"
+                      name="comuna_str"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\DIM_SUCURSAL\OLE DB Source.Outputs[OLE DB Source Output].Columns[comuna]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DIM_SUCURSAL\Data Conversion.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\DIM_SUCURSAL\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DIM_SUCURSAL\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DIM_SUCURSAL\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DIM_SUCURSAL\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DIM_SUCURSAL\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DIM_SUCURSAL\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
               usesDispositions="true"
               version="4">
               <properties>
                 <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
                   dataType="System.String"
-                  description="Especifica la instrucción SQL utilizada por el componente para extraer datos."
-                  expressionType="Notify"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT SucursalID, NombreSucursal, Comuna, Direccion
+FROM     DIM_SUCURSAL</property>
                 <property
                   dataType="System.Int32"
-                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
-                  name="CommandTimeout">30</property>
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
                 <property
                   dataType="System.Boolean"
-                  description="Indica si se debe permitir que columnas externas que no sean de cadenas se conviertan implícitamente en cadenas en las columnas de salida."
-                  name="AllowImplicitStringConversion">true</property>
-                <property
-                  dataType="System.String"
-                  description="Nombre de la tabla de la base de datos de origen."
-                  expressionType="Notify"
-                  name="TableOrViewName"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
                 <property
                   dataType="System.Int32"
-                  description="Especificar el modo de recuperar información de columnas externas"
+                  description="Specifies the mode used to access the database."
                   name="AccessMode"
-                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">2</property>
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
                 <property
                   dataType="System.String"
-                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
               </properties>
               <connections>
                 <connection
-                  refId="Package\Tarea Flujo de datos\Origen de ADO NET.Connections[IDbConnection]"
-                  description="Administrador de conexiones administrado"
-                  name="IDbConnection" />
+                  refId="Package\DIM_SUCURSAL\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[localhost.VentasSucursal1]"
+                  connectionManagerRefId="Package.ConnectionManagers[localhost.VentasSucursal1]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
               </connections>
+              <inputs>
+                <input
+                  refId="Package\DIM_SUCURSAL\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DIM_SUCURSAL\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[sucursal_id_str]"
+                      cachedDataType="i4"
+                      cachedName="sucursal_id_str"
+                      externalMetadataColumnId="Package\DIM_SUCURSAL\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SucursalID]"
+                      lineageId="Package\DIM_SUCURSAL\Data Conversion.Outputs[Data Conversion Output].Columns[sucursal_id_str]" />
+                    <inputColumn
+                      refId="Package\DIM_SUCURSAL\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[sucursal_str]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="80"
+                      cachedName="sucursal_str"
+                      externalMetadataColumnId="Package\DIM_SUCURSAL\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NombreSucursal]"
+                      lineageId="Package\DIM_SUCURSAL\Data Conversion.Outputs[Data Conversion Output].Columns[sucursal_str]" />
+                    <inputColumn
+                      refId="Package\DIM_SUCURSAL\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[comuna_str]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="80"
+                      cachedName="comuna_str"
+                      externalMetadataColumnId="Package\DIM_SUCURSAL\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Comuna]"
+                      lineageId="Package\DIM_SUCURSAL\Data Conversion.Outputs[Data Conversion Output].Columns[comuna_str]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DIM_SUCURSAL\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SucursalID]"
+                      dataType="i4"
+                      name="SucursalID" />
+                    <externalMetadataColumn
+                      refId="Package\DIM_SUCURSAL\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[NombreSucursal]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="NombreSucursal" />
+                    <externalMetadataColumn
+                      refId="Package\DIM_SUCURSAL\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Comuna]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="Comuna" />
+                    <externalMetadataColumn
+                      refId="Package\DIM_SUCURSAL\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Direccion]"
+                      dataType="i4"
+                      name="Direccion" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
               <outputs>
                 <output
-                  refId="Package\Tarea Flujo de datos\Origen de ADO NET.Outputs[Salida de origen de ADO NET]"
-                  name="Salida de origen de ADO NET">
-                  <externalMetadataColumns
-                    isUsed="True" />
-                </output>
-                <output
-                  refId="Package\Tarea Flujo de datos\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET]"
+                  refId="Package\DIM_SUCURSAL\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
                   isErrorOut="true"
-                  name="Salida de error de origen de ADO NET">
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\DIM_SUCURSAL\OLE DB Destination.Inputs[OLE DB Destination Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Tarea Flujo de datos\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      refId="Package\DIM_SUCURSAL\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Tarea Flujo de datos\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      lineageId="Package\DIM_SUCURSAL\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Tarea Flujo de datos\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
+                      refId="Package\DIM_SUCURSAL\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Tarea Flujo de datos\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
+                      lineageId="Package\DIM_SUCURSAL\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DIM_SUCURSAL\OLE DB Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT sucursales.sucursal_id, sucursales.sucursal, comunas.comuna
+FROM     comunas INNER JOIN
+                  sucursales ON comunas.comuna_id = sucursales.comuna_id</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DIM_SUCURSAL\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[localhost.Albarran1]"
+                  connectionManagerRefId="Package.ConnectionManagers[localhost.Albarran1]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DIM_SUCURSAL\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DIM_SUCURSAL\OLE DB Source.Outputs[OLE DB Source Output].Columns[sucursal_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DIM_SUCURSAL\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[sucursal_id]"
+                      lineageId="Package\DIM_SUCURSAL\OLE DB Source.Outputs[OLE DB Source Output].Columns[sucursal_id]"
+                      name="sucursal_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DIM_SUCURSAL\OLE DB Source.Outputs[OLE DB Source Output].Columns[sucursal]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DIM_SUCURSAL\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[sucursal]"
+                      length="255"
+                      lineageId="Package\DIM_SUCURSAL\OLE DB Source.Outputs[OLE DB Source Output].Columns[sucursal]"
+                      name="sucursal"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DIM_SUCURSAL\OLE DB Source.Outputs[OLE DB Source Output].Columns[comuna]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DIM_SUCURSAL\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[comuna]"
+                      length="255"
+                      lineageId="Package\DIM_SUCURSAL\OLE DB Source.Outputs[OLE DB Source Output].Columns[comuna]"
+                      name="comuna"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DIM_SUCURSAL\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[sucursal_id]"
+                      dataType="i4"
+                      name="sucursal_id" />
+                    <externalMetadataColumn
+                      refId="Package\DIM_SUCURSAL\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[sucursal]"
+                      dataType="wstr"
+                      length="255"
+                      name="sucursal" />
+                    <externalMetadataColumn
+                      refId="Package\DIM_SUCURSAL\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[comuna]"
+                      dataType="wstr"
+                      length="255"
+                      name="comuna" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DIM_SUCURSAL\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DIM_SUCURSAL\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[sucursal_id]"
+                      dataType="i4"
+                      lineageId="Package\DIM_SUCURSAL\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[sucursal_id]"
+                      name="sucursal_id" />
+                    <outputColumn
+                      refId="Package\DIM_SUCURSAL\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[sucursal]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DIM_SUCURSAL\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[sucursal]"
+                      name="sucursal" />
+                    <outputColumn
+                      refId="Package\DIM_SUCURSAL\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[comuna]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DIM_SUCURSAL\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[comuna]"
+                      name="comuna" />
+                    <outputColumn
+                      refId="Package\DIM_SUCURSAL\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DIM_SUCURSAL\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DIM_SUCURSAL\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DIM_SUCURSAL\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -132,22 +527,584 @@
               </outputs>
             </component>
           </components>
+          <paths>
+            <path
+              refId="Package\DIM_SUCURSAL.Paths[Data Conversion Output]"
+              endId="Package\DIM_SUCURSAL\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="Data Conversion Output"
+              startId="Package\DIM_SUCURSAL\Data Conversion.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\DIM_SUCURSAL.Paths[OLE DB Source Output]"
+              endId="Package\DIM_SUCURSAL\Data Conversion.Inputs[Data Conversion Input]"
+              name="OLE DB Source Output"
+              startId="Package\DIM_SUCURSAL\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
         </pipeline>
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
-      DTS:refId="Package\Tarea Flujo de datos 1"
+      DTS:refId="Package\DIM_VENDEDOR"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Tarea Flujo de datos"
-      DTS:DTSID="{AA9510D2-BAD7-4DF4-A9BB-1656A053A316}"
+      DTS:DTSID="{8822E4EA-C41F-4CE7-8E12-90130FB5D0F0}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
-      DTS:ObjectName="Tarea Flujo de datos 1"
+      DTS:ObjectName="DIM_VENDEDOR"
       DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
       <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
       <DTS:ObjectData>
         <pipeline
-          version="1" />
+          version="1">
+          <components>
+            <component
+              refId="Package\DIM_VENDEDOR\Data Conversion"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Data Conversion"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DIM_VENDEDOR\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DIM_VENDEDOR\Data Conversion.Inputs[Data Conversion Input].Columns[nombre]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="nombre"
+                      lineageId="Package\DIM_VENDEDOR\OLE DB Source.Outputs[OLE DB Source Output].Columns[nombre]" />
+                    <inputColumn
+                      refId="Package\DIM_VENDEDOR\Data Conversion.Inputs[Data Conversion Input].Columns[empleado_id]"
+                      cachedDataType="i4"
+                      cachedName="empleado_id"
+                      lineageId="Package\DIM_VENDEDOR\OLE DB Source.Outputs[OLE DB Source Output].Columns[empleado_id]" />
+                    <inputColumn
+                      refId="Package\DIM_VENDEDOR\Data Conversion.Inputs[Data Conversion Input].Columns[appaterno]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="appaterno"
+                      lineageId="Package\DIM_VENDEDOR\OLE DB Source.Outputs[OLE DB Source Output].Columns[appaterno]" />
+                    <inputColumn
+                      refId="Package\DIM_VENDEDOR\Data Conversion.Inputs[Data Conversion Input].Columns[apmaterno]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="apmaterno"
+                      lineageId="Package\DIM_VENDEDOR\OLE DB Source.Outputs[OLE DB Source Output].Columns[apmaterno]" />
+                    <inputColumn
+                      refId="Package\DIM_VENDEDOR\Data Conversion.Inputs[Data Conversion Input].Columns[nom_carg]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="nom_carg"
+                      lineageId="Package\DIM_VENDEDOR\OLE DB Source.Outputs[OLE DB Source Output].Columns[nom_carg]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DIM_VENDEDOR\Data Conversion.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\DIM_VENDEDOR\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DIM_VENDEDOR\Data Conversion.Outputs[Data Conversion Output].Columns[empleado_id_venta]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\DIM_VENDEDOR\Data Conversion.Outputs[Data Conversion Output].Columns[empleado_id_venta]"
+                      name="empleado_id_venta"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\DIM_VENDEDOR\OLE DB Source.Outputs[OLE DB Source Output].Columns[empleado_id]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DIM_VENDEDOR\Data Conversion.Outputs[Data Conversion Output].Columns[nombre_venta]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\DIM_VENDEDOR\Data Conversion.Outputs[Data Conversion Output].Columns[nombre_venta]"
+                      name="nombre_venta"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\DIM_VENDEDOR\OLE DB Source.Outputs[OLE DB Source Output].Columns[nombre]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DIM_VENDEDOR\Data Conversion.Outputs[Data Conversion Output].Columns[appaterno_venta]"
+                      dataType="i1"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\DIM_VENDEDOR\Data Conversion.Outputs[Data Conversion Output].Columns[appaterno_venta]"
+                      name="appaterno_venta"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\DIM_VENDEDOR\OLE DB Source.Outputs[OLE DB Source Output].Columns[appaterno]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DIM_VENDEDOR\Data Conversion.Outputs[Data Conversion Output].Columns[apmaterno_venta]"
+                      dataType="ui1"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\DIM_VENDEDOR\Data Conversion.Outputs[Data Conversion Output].Columns[apmaterno_venta]"
+                      name="apmaterno_venta"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\DIM_VENDEDOR\OLE DB Source.Outputs[OLE DB Source Output].Columns[apmaterno]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DIM_VENDEDOR\Data Conversion.Outputs[Data Conversion Output].Columns[nom_carg_venta]"
+                      dataType="ui1"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\DIM_VENDEDOR\Data Conversion.Outputs[Data Conversion Output].Columns[nom_carg_venta]"
+                      name="nom_carg_venta"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\DIM_VENDEDOR\OLE DB Source.Outputs[OLE DB Source Output].Columns[nom_carg]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DIM_VENDEDOR\Data Conversion.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\DIM_VENDEDOR\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DIM_VENDEDOR\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DIM_VENDEDOR\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DIM_VENDEDOR\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DIM_VENDEDOR\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DIM_VENDEDOR\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[DIM_VENDEDOR]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT VendedorID, Cargo, nombre, appaterno, apmaterno
+FROM     DIM_VENDEDOR</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DIM_VENDEDOR\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[localhost.VentasSucursal1]"
+                  connectionManagerRefId="Package.ConnectionManagers[localhost.VentasSucursal1]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DIM_VENDEDOR\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DIM_VENDEDOR\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[empleado_id_venta]"
+                      cachedDataType="i4"
+                      cachedName="empleado_id_venta"
+                      externalMetadataColumnId="Package\DIM_VENDEDOR\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[VendedorID]"
+                      lineageId="Package\DIM_VENDEDOR\Data Conversion.Outputs[Data Conversion Output].Columns[empleado_id_venta]" />
+                    <inputColumn
+                      refId="Package\DIM_VENDEDOR\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[nombre_venta]"
+                      cachedDataType="i4"
+                      cachedName="nombre_venta"
+                      externalMetadataColumnId="Package\DIM_VENDEDOR\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[nombre]"
+                      lineageId="Package\DIM_VENDEDOR\Data Conversion.Outputs[Data Conversion Output].Columns[nombre_venta]" />
+                    <inputColumn
+                      refId="Package\DIM_VENDEDOR\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[appaterno_venta]"
+                      cachedDataType="i1"
+                      cachedName="appaterno_venta"
+                      externalMetadataColumnId="Package\DIM_VENDEDOR\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[appaterno]"
+                      lineageId="Package\DIM_VENDEDOR\Data Conversion.Outputs[Data Conversion Output].Columns[appaterno_venta]" />
+                    <inputColumn
+                      refId="Package\DIM_VENDEDOR\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[apmaterno_venta]"
+                      cachedDataType="ui1"
+                      cachedName="apmaterno_venta"
+                      externalMetadataColumnId="Package\DIM_VENDEDOR\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[apmaterno]"
+                      lineageId="Package\DIM_VENDEDOR\Data Conversion.Outputs[Data Conversion Output].Columns[apmaterno_venta]" />
+                    <inputColumn
+                      refId="Package\DIM_VENDEDOR\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[nom_carg_venta]"
+                      cachedDataType="ui1"
+                      cachedName="nom_carg_venta"
+                      externalMetadataColumnId="Package\DIM_VENDEDOR\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Cargo]"
+                      lineageId="Package\DIM_VENDEDOR\Data Conversion.Outputs[Data Conversion Output].Columns[nom_carg_venta]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DIM_VENDEDOR\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[VendedorID]"
+                      dataType="i4"
+                      name="VendedorID" />
+                    <externalMetadataColumn
+                      refId="Package\DIM_VENDEDOR\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Cargo]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Cargo" />
+                    <externalMetadataColumn
+                      refId="Package\DIM_VENDEDOR\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[nombre]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="nombre" />
+                    <externalMetadataColumn
+                      refId="Package\DIM_VENDEDOR\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[appaterno]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="appaterno" />
+                    <externalMetadataColumn
+                      refId="Package\DIM_VENDEDOR\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[apmaterno]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="apmaterno" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DIM_VENDEDOR\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\DIM_VENDEDOR\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DIM_VENDEDOR\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DIM_VENDEDOR\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DIM_VENDEDOR\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DIM_VENDEDOR\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DIM_VENDEDOR\OLE DB Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT empleados.empleado_id, empleados.nombre, empleados.appaterno, empleados.apmaterno, cargos.nombre AS nom_carg
+FROM     cargos INNER JOIN
+                  empleados ON cargos.cargo_id = empleados.cargo_id</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DIM_VENDEDOR\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[localhost.Albarran1]"
+                  connectionManagerRefId="Package.ConnectionManagers[localhost.Albarran1]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DIM_VENDEDOR\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DIM_VENDEDOR\OLE DB Source.Outputs[OLE DB Source Output].Columns[nombre]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DIM_VENDEDOR\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[nombre]"
+                      length="255"
+                      lineageId="Package\DIM_VENDEDOR\OLE DB Source.Outputs[OLE DB Source Output].Columns[nombre]"
+                      name="nombre"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DIM_VENDEDOR\OLE DB Source.Outputs[OLE DB Source Output].Columns[empleado_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DIM_VENDEDOR\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[empleado_id]"
+                      lineageId="Package\DIM_VENDEDOR\OLE DB Source.Outputs[OLE DB Source Output].Columns[empleado_id]"
+                      name="empleado_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DIM_VENDEDOR\OLE DB Source.Outputs[OLE DB Source Output].Columns[appaterno]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DIM_VENDEDOR\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[appaterno]"
+                      length="255"
+                      lineageId="Package\DIM_VENDEDOR\OLE DB Source.Outputs[OLE DB Source Output].Columns[appaterno]"
+                      name="appaterno"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DIM_VENDEDOR\OLE DB Source.Outputs[OLE DB Source Output].Columns[apmaterno]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DIM_VENDEDOR\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[apmaterno]"
+                      length="255"
+                      lineageId="Package\DIM_VENDEDOR\OLE DB Source.Outputs[OLE DB Source Output].Columns[apmaterno]"
+                      name="apmaterno"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DIM_VENDEDOR\OLE DB Source.Outputs[OLE DB Source Output].Columns[nom_carg]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DIM_VENDEDOR\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[nom_carg]"
+                      length="255"
+                      lineageId="Package\DIM_VENDEDOR\OLE DB Source.Outputs[OLE DB Source Output].Columns[nom_carg]"
+                      name="nom_carg"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DIM_VENDEDOR\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[nombre]"
+                      dataType="wstr"
+                      length="255"
+                      name="nombre" />
+                    <externalMetadataColumn
+                      refId="Package\DIM_VENDEDOR\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[empleado_id]"
+                      dataType="i4"
+                      name="empleado_id" />
+                    <externalMetadataColumn
+                      refId="Package\DIM_VENDEDOR\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[appaterno]"
+                      dataType="wstr"
+                      length="255"
+                      name="appaterno" />
+                    <externalMetadataColumn
+                      refId="Package\DIM_VENDEDOR\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[apmaterno]"
+                      dataType="wstr"
+                      length="255"
+                      name="apmaterno" />
+                    <externalMetadataColumn
+                      refId="Package\DIM_VENDEDOR\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[nom_carg]"
+                      dataType="wstr"
+                      length="255"
+                      name="nom_carg" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DIM_VENDEDOR\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DIM_VENDEDOR\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[nombre]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DIM_VENDEDOR\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[nombre]"
+                      name="nombre" />
+                    <outputColumn
+                      refId="Package\DIM_VENDEDOR\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[empleado_id]"
+                      dataType="i4"
+                      lineageId="Package\DIM_VENDEDOR\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[empleado_id]"
+                      name="empleado_id" />
+                    <outputColumn
+                      refId="Package\DIM_VENDEDOR\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[appaterno]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DIM_VENDEDOR\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[appaterno]"
+                      name="appaterno" />
+                    <outputColumn
+                      refId="Package\DIM_VENDEDOR\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[apmaterno]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DIM_VENDEDOR\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[apmaterno]"
+                      name="apmaterno" />
+                    <outputColumn
+                      refId="Package\DIM_VENDEDOR\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[nom_carg]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DIM_VENDEDOR\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[nom_carg]"
+                      name="nom_carg" />
+                    <outputColumn
+                      refId="Package\DIM_VENDEDOR\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DIM_VENDEDOR\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DIM_VENDEDOR\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DIM_VENDEDOR\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DIM_VENDEDOR.Paths[Data Conversion Output]"
+              endId="Package\DIM_VENDEDOR\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="Data Conversion Output"
+              startId="Package\DIM_VENDEDOR\Data Conversion.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\DIM_VENDEDOR.Paths[OLE DB Source Output]"
+              endId="Package\DIM_VENDEDOR\Data Conversion.Inputs[Data Conversion Input]"
+              name="OLE DB Source Output"
+              startId="Package\DIM_VENDEDOR\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -160,6 +1117,8 @@
       DTS:ObjectName="Tarea Flujo de datos 2"
       DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
       <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
       <DTS:ObjectData>
         <pipeline
           version="1" />
@@ -175,6 +1134,8 @@
       DTS:ObjectName="Tarea Flujo de datos 3"
       DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
       <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
       <DTS:ObjectData>
         <pipeline
           version="1" />
@@ -190,6 +1151,8 @@
       DTS:ObjectName="Tarea Flujo de datos 4"
       DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
       <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
       <DTS:ObjectData>
         <pipeline
           version="1" />
@@ -201,15 +1164,15 @@
       DTS:refId="Package.PrecedenceConstraints[Constraint]"
       DTS:CreationName=""
       DTS:DTSID="{10BB97CD-6E97-4E44-97D2-4291A08CB829}"
-      DTS:From="Package\Tarea Flujo de datos"
+      DTS:From="Package\DIM_VENDEDOR"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint"
-      DTS:To="Package\Tarea Flujo de datos 1" />
+      DTS:To="Package\DIM_SUCURSAL" />
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
       DTS:CreationName=""
-      DTS:DTSID="{C4402B56-29A5-44E9-831E-CF5796F68089}"
-      DTS:From="Package\Tarea Flujo de datos 1"
+      DTS:DTSID="{FBD9D447-B062-4547-A9EE-43EE06EB172A}"
+      DTS:From="Package\DIM_SUCURSAL"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 1"
       DTS:To="Package\Tarea Flujo de datos 2" />
@@ -251,89 +1214,55 @@
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="176,42"
-          Id="Package\Tarea Flujo de datos"
+          Size="160.8,41.6"
+          Id="Package\Carga FactVentas"
+          TopLeft="692,429" />
+        <NodeLayout
+          Size="157.6,41.6"
+          Id="Package\DIM_VENDEDOR"
           TopLeft="188,70" />
         <NodeLayout
-          Size="185,42"
-          Id="Package\Tarea Flujo de datos 1"
+          Size="154.4,41.6"
+          Id="Package\DIM_SUCURSAL"
           TopLeft="293,141" />
         <NodeLayout
-          Size="185,42"
+          Size="184.8,41.6"
           Id="Package\Tarea Flujo de datos 2"
           TopLeft="385,209" />
         <NodeLayout
-          Size="185,42"
+          Size="184.8,41.6"
           Id="Package\Tarea Flujo de datos 3"
           TopLeft="475,278" />
         <NodeLayout
-          Size="185,42"
+          Size="184.8,41.6"
           Id="Package\Tarea Flujo de datos 4"
           TopLeft="558,344" />
-        <NodeLayout
-          Size="161,42"
-          Id="Package\Carga FactVentas"
-          TopLeft="692,429" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="276,112">
+          TopLeft="266.8,111.6">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="109.5,29"
+              EndConnector="103.4,29.4"
               Start="0,0"
-              End="109.5,21.5">
+              End="103.4,21.9">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,10.5" />
+                    End="0,10.7" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,10.5"
-                    Point2="0,14.5"
-                    Point3="4,14.5" />
+                    Point1="0,10.7"
+                    Point2="0,14.7"
+                    Point3="4,14.7" />
                   <mssgle:LineSegment
-                    End="105.5,14.5" />
+                    End="99.4,14.7" />
                   <mssgle:CubicBezierSegment
-                    Point1="105.5,14.5"
-                    Point2="109.5,14.5"
-                    Point3="109.5,18.5" />
+                    Point1="99.4,14.7"
+                    Point2="103.4,14.7"
+                    Point3="103.4,18.7" />
                   <mssgle:LineSegment
-                    End="109.5,21.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 1]"
-          TopLeft="385.5,183">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="92,26"
-              Start="0,0"
-              End="92,18.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,9" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,9"
-                    Point2="0,13"
-                    Point3="4,13" />
-                  <mssgle:LineSegment
-                    End="88,13" />
-                  <mssgle:CubicBezierSegment
-                    Point1="88,13"
-                    Point2="92,13"
-                    Point3="92,17" />
-                  <mssgle:LineSegment
-                    End="92,18.5" />
+                    End="103.4,21.9" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -444,20 +1373,255 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="370.2,182.6">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="107.2,26.4"
+              Start="0,0"
+              End="107.2,18.9">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,9.2" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,9.2"
+                    Point2="0,13.2"
+                    Point3="4,13.2" />
+                  <mssgle:LineSegment
+                    End="103.2,13.2" />
+                  <mssgle:CubicBezierSegment
+                    Point1="103.2,13.2"
+                    Point2="107.2,13.2"
+                    Point3="107.2,17.2" />
+                  <mssgle:LineSegment
+                    End="107.2,18.9" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </Package>
   <TaskHost
-    design-time-name="Package\Tarea Flujo de datos">
+    design-time-name="Package\DIM_VENDEDOR">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="172,42"
-          Id="Package\Tarea Flujo de datos\Origen de ADO NET"
-          TopLeft="134,106" />
+          Size="149.6,41.6"
+          Id="Package\DIM_VENDEDOR\OLE DB Source"
+          TopLeft="106.428573241039,29.0588239369508" />
+        <NodeLayout
+          Size="170.4,41.6"
+          Id="Package\DIM_VENDEDOR\OLE DB Destination"
+          TopLeft="344.285720148865,191.941179162491" />
+        <NodeLayout
+          Size="155.2,41.6"
+          Id="Package\DIM_VENDEDOR\Data Conversion"
+          TopLeft="230.000003916877,120.823531106269" />
+        <EdgeLayout
+          Id="Package\DIM_VENDEDOR.Paths[OLE DB Source Output]"
+          TopLeft="181.228573241039,70.6588239369508">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="126.371430675838,50.1647071693183"
+              Start="0,0"
+              End="126.371430675838,42.6647071693183">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.0823535846592" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,21.0823535846592"
+                    Point2="0,25.0823535846592"
+                    Point3="4,25.0823535846592" />
+                  <mssgle:LineSegment
+                    End="122.371430675838,25.0823535846592" />
+                  <mssgle:CubicBezierSegment
+                    Point1="122.371430675838,25.0823535846592"
+                    Point2="126.371430675838,25.0823535846592"
+                    Point3="126.371430675838,29.0823535846592" />
+                  <mssgle:LineSegment
+                    End="126.371430675838,42.6647071693183" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DIM_VENDEDOR.Paths[Data Conversion Output]"
+          TopLeft="307.600003916877,162.423531106269">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="121.885716231988,29.5176480562216"
+              Start="0,0"
+              End="121.885716231988,22.0176480562216">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,10.7588240281108" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,10.7588240281108"
+                    Point2="0,14.7588240281108"
+                    Point3="4,14.7588240281108" />
+                  <mssgle:LineSegment
+                    End="117.885716231988,14.7588240281108" />
+                  <mssgle:CubicBezierSegment
+                    Point1="117.885716231988,14.7588240281108"
+                    Point2="121.885716231988,14.7588240281108"
+                    Point3="121.885716231988,18.7588240281108" />
+                  <mssgle:LineSegment
+                    End="121.885716231988,22.0176480562216" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
+  <TaskHost
+    design-time-name="Package\DIM_SUCURSAL">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="155.2,41.6"
+          Id="Package\DIM_SUCURSAL\Data Conversion"
+          TopLeft="404,172" />
+        <NodeLayout
+          Size="170.4,41.6"
+          Id="Package\DIM_SUCURSAL\OLE DB Destination"
+          TopLeft="611,295" />
+        <NodeLayout
+          Size="149.6,41.6"
+          Id="Package\DIM_SUCURSAL\OLE DB Source"
+          TopLeft="243,81" />
+        <EdgeLayout
+          Id="Package\DIM_SUCURSAL.Paths[OLE DB Source Output]"
+          TopLeft="317.8,122.6">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="163.8,49.4"
+              Start="0,0"
+              End="163.8,41.9">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.7" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.7"
+                    Point2="0,24.7"
+                    Point3="4,24.7" />
+                  <mssgle:LineSegment
+                    End="159.8,24.7" />
+                  <mssgle:CubicBezierSegment
+                    Point1="159.8,24.7"
+                    Point2="163.8,24.7"
+                    Point3="163.8,28.7" />
+                  <mssgle:LineSegment
+                    End="163.8,41.9" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DIM_SUCURSAL.Paths[Data Conversion Output]"
+          TopLeft="481.6,213.6">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="214.6,81.4"
+              Start="0,0"
+              End="214.6,73.9">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,36.7" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,36.7"
+                    Point2="0,40.7"
+                    Point3="4,40.7" />
+                  <mssgle:LineSegment
+                    End="210.6,40.7" />
+                  <mssgle:CubicBezierSegment
+                    Point1="210.6,40.7"
+                    Point2="214.6,40.7"
+                    Point3="214.6,44.7" />
+                  <mssgle:LineSegment
+                    End="214.6,73.9" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DIM_VENDEDOR\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DIM_VENDEDOR\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DIM_SUCURSAL\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DIM_SUCURSAL\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
 </Objects>]]></DTS:DesignTimeProperties>
 </DTS:Executable>
