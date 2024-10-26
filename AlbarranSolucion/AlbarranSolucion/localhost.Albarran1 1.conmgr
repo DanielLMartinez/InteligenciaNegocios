@@ -1,0 +1,10 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="localhost.Albarran1 1"
+  DTS:DTSID="{4824B6DB-7DB7-40A4-BCDC-87F2BB69F71F}"
+  DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="Data Source=localhost;Initial Catalog=Albarran;Integrated Security=True;Application Name=SSIS-AlbarranSolucion-{4824B6DB-7DB7-40A4-BCDC-87F2BB69F71F}localhost.Albarran1 1;" />
+  </DTS:ObjectData>
+</DTS:ConnectionManager>
